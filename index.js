@@ -1,20 +1,22 @@
 // created variable to make for loop cleaner
 
 // detecting button press
-var numDrumBtn = document.querySelectorAll(".drum").length;
+var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
 // forloop to make the code apply to all buttons. it contains
 // an anonymous function because it wants to call the function after
 // the click has occured instead of when the page opens
 // the eventlistener is what make it know what to action
 // it needs to respond to.
-for (var i = 0; i<numDrumBtn; i++) {
+for (var i = 0; i < numberOfDrumButtons; i++) {
 
-  document.querySelectorAll(".drum")[i].addEventListener("click", function () {
+  document.querySelectorAll(".drum")[i].addEventListener("click", function() {
 
       var buttonInnerHTML = this.innerHTML;
 
       makeSound(buttonInnerHTML);
+
+      buttonAnimation(buttonInnerHTML);
 
   });
 
@@ -25,6 +27,8 @@ for (var i = 0; i<numDrumBtn; i++) {
 document.addEventListener("keydown", function(event) {
 
   makeSound(event.key);
+
+  buttonAnimation(event.key);
 
 )};
 
@@ -66,4 +70,15 @@ function makeSound(key) {
     default: console.log(buttonInnerHTML);
   }
 
+}
+
+function buttonAnimation(currentKey) {
+
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
