@@ -30,7 +30,7 @@ document.addEventListener("keypress", function(event) {
 
   buttonAnimation(event.key);
 
-)};
+});
 
 function makeSound(key) {
 
